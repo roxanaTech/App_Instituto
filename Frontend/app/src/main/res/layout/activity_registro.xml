@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="24dp"
+    android:background="#F5B5D5FA"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="NUEVO REGISTRO"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:textColor="#BF281C"
+            android:layout_marginBottom="15dp"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:boxStrokeColor="#FFA000"
+            android:layout_marginBottom="12dp"
+            android:textColorHint="#09185F">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/InputName"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:hint="Nombres"
+                android:textColorHint="#09185F" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:boxStrokeColor="#FFA000"
+            android:layout_marginBottom="12dp"
+            android:textColorHint="#09185F">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/inputLastName"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:hint="Apellidos" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:boxStrokeColor="#FFA000"
+            android:layout_marginBottom="12dp"
+            android:textColorHint="#09185F">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/inputCI"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:hint="Carnet de Identidad" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:boxStrokeColor="#FFA000"
+            android:layout_marginBottom="12dp"
+            android:textColorHint="#09185F">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/inputTelf"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:hint="Telefono" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:boxStrokeColor="#FFA000"
+        android:layout_marginBottom="12dp"
+        android:textColorHint="#09185F">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/inputEmail"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="Correo Electronico" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:boxStrokeColor="#FFA000"
+        android:layout_marginBottom="12dp"
+        android:textColorHint="#09185F">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/inputPass"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="Contraseña" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Seleccione una fotografia(opcional)"
+        android:gravity="center"
+        android:textSize="16sp"
+        android:textColor="#09185F"
+        android:layout_marginBottom="15dp"/>
+
+    <ImageView
+        android:id="@+id/imagePreview"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:layout_gravity="center"
+        android:layout_margin="4dp"
+        android:src="@android:drawable/ic_menu_camera"
+        android:scaleType="centerCrop"
+        android:contentDescription="Imagen del usuario"
+        android:clickable="true"
+        android:focusable="true"/>
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnNewRegister"
+        style="@style/Widget.MaterialComponents.Button"
+        android:layout_width="243dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="#FFA000"
+        android:text="REALIZAR REGISTRO"
+        android:textSize="16dp"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        app:cornerRadius="20dp"/>
+</LinearLayout>
