@@ -60,7 +60,8 @@
                 android:id="@+id/inputCI"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:hint="Carnet de Identidad" />
+                android:hint="Carnet de Identidad"
+                android:inputType="number"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -75,7 +76,8 @@
                 android:id="@+id/inputTelf"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:hint="Telefono" />
+                android:hint="Telefono"
+                android:inputType="phone"/>
         </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -90,7 +92,8 @@
             android:id="@+id/inputEmail"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:hint="Correo Electronico" />
+            android:hint="Correo Electronico"
+            android:inputType="textEmailAddress"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -105,7 +108,7 @@
             android:id="@+id/inputPass"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:hint="Contraseña" />
+            android:hint="Contraseña"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
