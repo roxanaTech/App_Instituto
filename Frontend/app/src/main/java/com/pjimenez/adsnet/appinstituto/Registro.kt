@@ -17,10 +17,14 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
+import org.json.JSONException
+import org.json.JSONObject
 import java.io.BufferedReader
 import java.io.ByteArrayOutputStream
 import java.io.InputStreamReader
+import java.net.ConnectException
 import java.net.HttpURLConnection
+import java.net.SocketTimeoutException
 import java.net.URL
 import java.net.URLEncoder
 import kotlin.math.max
@@ -133,43 +137,73 @@ class Registro : AppCompatActivity() {
                 val responseCode = conn.responseCode
                 if (responseCode == HttpURLConnection.HTTP_OK) {
                     val reader = BufferedReader(InputStreamReader(conn.inputStream))
-                    val response = StringBuilder()
-                    var line: String?
-
-                    while (reader.readLine().also { line = it } != null) {
-                        response.append(line)
-                    }
-                    reader.close()
+                    val response = reader.use { it.readText() }
+                    val jsonResponse = JSONObject(response)
 
                     runOnUiThread {
-                        AlertDialog.Builder(this)
-                            .setMessage("Desea guardar el Registro?")
-                            .setPositiveButton("Aceptar"){ dialog, _ ->
-                                Toast.makeText(this, "Registro exitoso: ${response.toString()}", Toast.LENGTH_LONG).show()
-                                dialog.dismiss()
-                                finish() // Cierra la actividad y vuelve al login
-                                logError("exitoso: ${response.toString()}")
+                        if (jsonResponse.getBoolean("success")) {
+                            showSuccessDialog(response)
+                        } else {
+                            // Manejar errores específicos del servidor
+                            val errorMessage = jsonResponse.getString("message")
+                            when {
+                                errorMessage.contains("duplicate_ci") -> {
+                                    Toast.makeText(this, "Error: La cédula ya existe", Toast.LENGTH_LONG).show()
+                                }
+                                errorMessage.contains("duplicate_email") -> {
+                                    Toast.makeText(this, "Error: El email ya está registrado", Toast.LENGTH_LONG).show()
+                                }
+                                else -> {
+                                    Toast.makeText(this, "Error: $errorMessage", Toast.LENGTH_LONG).show()
+                                }
                             }
-                            .setNegativeButton("Cancelar"){dialog, _ ->
-                                dialog.dismiss()
-                                Toast.makeText(this, "Registro cancelado", Toast.LENGTH_SHORT).show()
-                            }
-                            .setCancelable(false)
-                            .show()
+                        }
                     }
                 } else {
+                    // Manejar otros códigos de error HTTP
+                    val errorStream = conn.errorStream?.use {
+                        BufferedReader(InputStreamReader(it)).readText()
+                    } ?: "Error desconocido"
+
                     runOnUiThread {
-                        Toast.makeText(this, "Error en servidor: $responseCode", Toast.LENGTH_LONG).show()
+                        val errorMessage = try {
+                            JSONObject(errorStream).getString("message")
+                        } catch (e: Exception) {
+                            "Error en el servidor (Código $responseCode)"
+                        }
+                        Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show()
                     }
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
                 runOnUiThread {
-                    logError("Error: ${e.message}")
-                    Toast.makeText(this, "Error de conexión: ${e.message}", Toast.LENGTH_LONG).show()
+                    val errorMessage = when (e) {
+                        is SocketTimeoutException -> "Tiempo de espera agotado"
+                        is ConnectException -> "No se pudo conectar al servidor"
+                        is JSONException -> "Error procesando la respuesta"
+                        else -> "Error: ${e.message ?: "Desconocido"}"
+                    }
+                    Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show()
+                    logError("Error en registro: ${e.message}")
                 }
             }
         }.start()
+    }
+
+    private fun showSuccessDialog(response: String) {
+        AlertDialog.Builder(this)
+            .setMessage("¿Desea guardar el Registro?")
+            .setPositiveButton("Aceptar") { dialog, _ ->
+                Toast.makeText(this, "Registro exitoso", Toast.LENGTH_LONG).show()
+                dialog.dismiss()
+                finish()
+            }
+            .setNegativeButton("Cancelar") { dialog, _ ->
+                dialog.dismiss()
+                Toast.makeText(this, "Registro cancelado", Toast.LENGTH_SHORT).show()
+            }
+            .setCancelable(false)
+            .show()
     }
     fun logError(mensaje: String) {
         Log.e("Error", mensaje)
