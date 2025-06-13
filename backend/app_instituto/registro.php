@@ -40,25 +40,13 @@ try {
     if (!empty($camposFaltantes)) {
         throw new Exception("Campos requeridos faltantes: " . implode(", ", $camposFaltantes));
     }
-    // Validación del formato de email
+    // Validaciones previas
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    throw new Exception("Formato de email inválido");
+        throw new Exception("Formato de email inválido");
     }
-    // Código de error para duplicados
-    if ($stmt->execute() === false) {
-    if ($conexion->errno == 1062) { 
-        $errorMessage = $conexion->error;
-        if (strpos($errorMessage, 'ci') !== false) {
-            throw new Exception("La cédula ya está registrada");
-        } elseif (strpos($errorMessage, 'email') !== false) {
-            throw new Exception("El email ya está registrado");
-        }
-    }
-    throw new Exception("Error al ejecutar la consulta: " . $stmt->error);
-    }
-    // contraseña segura
-    if (strlen($password) < 8 || !preg_match('/[A-Z]/', $password) || !preg_match('/[0-9]/', $password)) {
-    throw new Exception("La contraseña debe tener al menos 8 caracteres, una mayúscula y un número");
+
+    if (strlen($password) < 8 || !preg_match('/[0-9]/', $password)) {
+        throw new Exception("La contraseña debe tener al menos 8 caracteres, y un número");
     }
     // 6. Hash de contraseña
     $password_hash = password_hash($password, PASSWORD_BCRYPT);
@@ -86,7 +74,14 @@ try {
     $stmt->bind_param("sssssss", $nombre, $apellido, $ci, $telefono, $email, $password_hash, $imagen);
     
     if (!$stmt->execute()) {
-        throw new Exception("Error al ejecutar la consulta: " . $stmt->error);
+    if ($conexion->errno == 1062) { 
+        if (strpos($conexion->error, 'ci') !== false) {
+            throw new Exception("La cédula ya está registrada");
+        } elseif (strpos($conexion->error, 'email') !== false) {
+            throw new Exception("El email ya está registrado");
+        }
+    }
+    throw new Exception("Error al ejecutar la consulta: " . $stmt->error);
     }
     // Registro de usuario y verificación de imagen almacenada
     $id = $conexion->insert_id;
