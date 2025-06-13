@@ -53,9 +53,9 @@ Para probar en el emulador Android:
 
 ## Equipo de Desarrollo
 
-- [Nombre 1] - Rol (ej: Desarrollo Backend)
-- [Nombre 2] - Rol (ej: Desarrollo Android)
-- [Nombre 3] - Rol (ej: Base de Datos)
+- [Palermo Jimenez] - Rol (Desarrollo Android)
+- [Palermo Jimenez] - Rol (Desarrollo Backend / Base de Datos)
+- [Rosly Zapata] - Rol (Documentacion)
 
 ## Equipo de Desarrollo
 
@@ -95,4 +95,4 @@ Si la conexión falla:
 4. Verificar que las URLs en la app son correctas
 
 ## Licencia
-MIT
+[MIT](LICENSE)
