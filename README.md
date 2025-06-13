@@ -3,11 +3,13 @@
 Aplicación Android para gestión de instituto con autenticación de usuarios, conectada a una base de datos MySQL mediante XAMPP.
 
 ## Estructura del Proyecto
+```
 /app_instituto/
 ├── frontend/ # Código de la app Android (XML, Kotlin/Java)
 ├── backend/ # Archivos PHP (conexión a BD, APIs)
 ├── database/ # Scripts SQL para crear la BD
 └── README.md
+```
 
 ## Requisitos Previos
 
@@ -59,33 +61,30 @@ Para probar en el emulador Android:
 
 | Integrante         | Rol                          | Responsabilidades                          |
 |--------------------|------------------------------|-------------------------------------------|
-| [Tu Nombre]        | Backend/BD                   | Conexión PHP-MySQL, APIs, estructura BD   |
-| [Nombre Android]   | Frontend Mobile              | UI/UX, formularios Login/Registro         |
-| [Nombre Documentadora] | Gestión Documental       | Informes, manuales, documentación técnica |
+| [Ana Marca]        | Backend/BD                   | Conexión PHP-MySQL, APIs, estructura BD   |
+| [Palermo Jimenez]  | Frontend Mobile              | UI/UX, formularios Login/Registro         |
+| [Rosly Zapata]     | Gestión Documental           | Informes, manuales, documentación técnica |
 
 ## Equipo de Desarrollo
 
-- Carlos - Backend y Base de Datos
+- Palermo Jimenez - Frontend Android
+  - Diseño de interfaces (XML)
+  - Lógica de formularios en Kotlin
+  - Conexión con APIs
+    
+- Ana Marca - Backend y Base de Datos
   - Desarrollo de APIs PHP
   - Diseño de estructura MySQL
   - Configuración de XAMPP
 
-- Javier - Frontend Android
-  - Diseño de interfaces (XML)
-  - Lógica de formularios en Kotlin
-  - Conexión con APIs
-
-- Sofía - Documentación
+- Rosly Zapata - Documentación
   - Redacción de informes
   - Manuales de usuario
-  - Gestión del repositorio
 
 ## Mejoras Futuras
 
 - Implementar más funcionalidades en la pantalla principal
-- Añadir validaciones adicionales en los formularios
 - Implementar seguridad adicional (HTTPS, hash de contraseñas más seguro)
-- Migrar a arquitectura más escalable (ej: Node.js + MongoDB)
 
 ## Solución de Problemas
 
@@ -96,5 +95,4 @@ Si la conexión falla:
 4. Verificar que las URLs en la app son correctas
 
 ## Licencia
-
-[Incluir aquí la licencia del proyecto si es necesario]
+MIT
