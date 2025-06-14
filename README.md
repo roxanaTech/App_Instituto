@@ -57,30 +57,6 @@ Para probar en el emulador Android:
 - [Palermo Jimenez] - Rol (Desarrollo Backend / Base de Datos)
 - [Rosly Zapata] - Rol (Documentacion)
 
-## Equipo de Desarrollo
-
-| Integrante         | Rol                          | Responsabilidades                          |
-|--------------------|------------------------------|-------------------------------------------|
-| [Ana Marca]        | Backend/BD                   | Conexión PHP-MySQL, APIs, estructura BD   |
-| [Palermo Jimenez]  | Frontend Mobile              | UI/UX, formularios Login/Registro         |
-| [Rosly Zapata]     | Gestión Documental           | Informes, manuales, documentación técnica |
-
-## Equipo de Desarrollo
-
-- Palermo Jimenez - Frontend Android
-  - Diseño de interfaces (XML)
-  - Lógica de formularios en Kotlin
-  - Conexión con APIs
-    
-- Ana Marca - Backend y Base de Datos
-  - Desarrollo de APIs PHP
-  - Diseño de estructura MySQL
-  - Configuración de XAMPP
-
-- Rosly Zapata - Documentación
-  - Redacción de informes
-  - Manuales de usuario
-
 ## Mejoras Futuras
 
 - Implementar más funcionalidades en la pantalla principal
