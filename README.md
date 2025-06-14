@@ -54,7 +54,7 @@ Para probar en el emulador Android:
 ## Equipo de Desarrollo
 
 - [Palermo Jimenez] - Rol (Desarrollo Android)
-- [Palermo Jimenez] - Rol (Desarrollo Backend / Base de Datos)
+- [Ana Marca] - Rol (Desarrollo Backend / Base de Datos)
 - [Rosly Zapata] - Rol (Documentacion)
 
 ## Mejoras Futuras
